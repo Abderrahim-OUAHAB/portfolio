@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111820">
+  <meta name="description" content="Portfolio d’Abderrahim OUAHAB : applications web, intelligence artificielle et analyse de données. Découvrez une sélection de projets GitHub.">
+  <title>Abderrahim OUAHAB — Portfolio</title>
+  <style>
+    :root {
+      --ink: #111820;
+      --ink-soft: #38434a;
+      --paper: #f7f7f1;
+      --line: #d8ddd5;
+      --accent: #c9f278;
+      --accent-dark: #9ccc43;
+      --white: #fff;
+      --radius: 22px;
+      --shadow: 0 18px 48px rgba(17, 24, 32, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ::selection { background: var(--accent); color: var(--ink); }
+    :focus-visible { outline: 3px solid #4a9b77; outline-offset: 4px; }
+    .container { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+    .skip-link { position: absolute; top: -60px; left: 16px; padding: 10px 14px; z-index: 100; background: var(--accent); color: var(--ink); border-radius: 8px; }
+    .skip-link:focus { top: 12px; }
+
+    .site-header { position: relative; z-index: 10; background: var(--ink); color: var(--white); border-bottom: 1px solid rgba(255,255,255,.13); }
+    .nav { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 800; letter-spacing: -.03em; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 12px; background: var(--accent); color: var(--ink); font-size: 16px; font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a { font-size: 14px; font-weight: 650; color: #cbd3d4; transition: color .2s ease; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links .nav-cta { color: var(--ink); background: var(--accent); padding: 11px 16px; border-radius: 10px; }
+    .nav-links .nav-cta:hover { color: var(--ink); background: #dcffa0; }
+    .menu-toggle { display: none; padding: 8px; border: 1px solid rgba(255,255,255,.25); border-radius: 9px; color: white; background: transparent; cursor: pointer; }
+    .menu-toggle svg { display: block; width: 22px; height: 22px; }
+
+    .hero { background: var(--ink); color: var(--white); overflow: hidden; }
+    .hero-inner { position: relative; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 48px; min-height: 620px; padding-block: 86px 108px; }
+    .hero-inner::before { content: ""; position: absolute; right: -310px; top: -290px; width: 720px; height: 720px; border: 1px solid rgba(201,242,120,.17); border-radius: 50%; pointer-events: none; }
+    .hero-inner::after { content: ""; position: absolute; right: -190px; top: -170px; width: 480px; height: 480px; border: 1px solid rgba(201,242,120,.13); border-radius: 50%; pointer-events: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .17em; }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 700px; margin: 26px 0 25px; font-size: clamp(54px, 6.1vw, 94px); line-height: .99; letter-spacing: -.075em; }
+    h1 span { color: var(--accent); }
+    .hero-copy { max-width: 590px; color: #b8c3c3; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.7; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 36px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 49px; padding: 0 19px; border-radius: 11px; font-weight: 750; font-size: 14px; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--accent); color: var(--ink); }
+    .button-primary:hover { background: #ddffa4; }
+    .button-outline { border: 1px solid #59666c; color: white; }
+    .button-outline:hover { border-color: var(--accent); }
+    .button svg { width: 17px; height: 17px; }
+    .hero-side { position: relative; z-index: 1; }
+    .profile-card { position: relative; max-width: 445px; margin-left: auto; padding: 25px; border-radius: 26px; background: #1c2830; border: 1px solid #3c4a4d; box-shadow: 0 30px 70px rgba(0,0,0,.24); transform: rotate(2deg); }
+    .profile-card::before { content: ""; position: absolute; inset: 9px -10px -10px 9px; border: 1px solid rgba(201,242,120,.5); border-radius: 26px; z-index: -1; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; color: #aebcbd; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .online { display: inline-flex; align-items: center; gap: 7px; }
+    .online::before { content: ""; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px rgba(201,242,120,.12); }
+    .avatar-wrap { display: flex; align-items: center; gap: 18px; margin: 38px 0 27px; }
+    .avatar { width: 80px; height: 80px; border-radius: 21px; object-fit: cover; background: #657179; border: 2px solid var(--accent); }
+    .avatar-wrap strong { display: block; font-size: 21px; letter-spacing: -.04em; }
+    .avatar-wrap small { display: block; margin-top: 3px; color: #aebcbd; font-size: 13px; }
+    .terminal { border: 1px solid #354449; border-radius: 14px; overflow: hidden; background: #111a20; }
+    .terminal-bar { display: flex; align-items: center; gap: 5px; padding: 12px 14px; border-bottom: 1px solid #354449; }
+    .terminal-bar i { width: 7px; height: 7px; border-radius: 50%; background: #65747a; }
+    .terminal-bar i:first-child { background: #ee8477; }
+    .terminal-bar i:nth-child(2) { background: #e8bf70; }
+    .terminal-bar i:nth-child(3) { background: #9bcf72; }
+    .terminal-body { padding: 18px; color: #d3dedc; font: 13px/1.9 Consolas, "SFMono-Regular", monospace; }
+    .terminal-body .prompt { color: var(--accent); }
+    .terminal-body .muted { color: #899a9d; }
+    .terminal-body .cursor { display: inline-block; width: 7px; height: 14px; vertical-align: -2px; background: var(--accent); animation: blink 1.2s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-foot { position: absolute; bottom: 38px; left: 0; display: flex; align-items: center; gap: 13px; color: #84979a; font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .hero-foot::after { content: ""; width: 48px; height: 1px; background: #84979a; }
+
+    .section { padding-block: 105px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 26px; margin-bottom: 34px; }
+    .kicker { display: inline-block; margin-bottom: 15px; color: #61764b; font-size: 12px; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { margin-bottom: 0; font-size: clamp(36px, 4vw, 57px); line-height: 1.06; letter-spacing: -.06em; }
+    .section-intro { max-width: 460px; margin: 0; color: #617078; font-size: 15px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+    .filter { padding: 9px 15px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #516169; font-size: 13px; font-weight: 750; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+    .filter:hover, .filter[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: white; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .project { display: flex; flex-direction: column; min-height: 360px; padding: 27px; background: white; border: 1px solid #e5e9e2; border-radius: var(--radius); box-shadow: 0 3px 14px rgba(17,24,32,.025); transition: transform .25s ease, box-shadow .25s ease; }
+    .project:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .project[hidden] { display: none; }
+    .project-top { display: flex; justify-content: space-between; align-items: start; gap: 15px; }
+    .project-number { color: #8b9a9b; font: 13px Consolas, monospace; }
+    .project-icon { display: grid; place-items: center; width: 49px; height: 49px; border-radius: 14px; background: #e9f6d7; color: #315737; font-size: 24px; }
+    .project:nth-child(3n+2) .project-icon { background: #e0edf5; color: #326285; }
+    .project:nth-child(3n+3) .project-icon { background: #f4e9e4; color: #8a5d48; }
+    .project h3 { margin: 30px 0 9px; font-size: 23px; line-height: 1.15; letter-spacing: -.045em; }
+    .project p { margin: 0; color: #65737a; font-size: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 26px; }
+    .tag { padding: 5px 9px; border-radius: 6px; background: #f1f4ef; color: #596a60; font-size: 11px; font-weight: 750; }
+    .project-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #e7eae5; color: #25352b; font-size: 13px; font-weight: 850; }
+    .project-link span:last-child { font-size: 20px; line-height: 1; transition: transform .2s ease; }
+    .project-link:hover span:last-child { transform: translate(3px, -3px); }
+    .all-projects { display: flex; justify-content: center; margin-top: 34px; }
+    .all-projects .button { background: var(--ink); color: white; }
+    .all-projects .button:hover { background: #2e3e43; }
+
+    .about { background: #eaf0e3; }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
+    .about h2 { max-width: 440px; }
+    .about-copy { padding-top: 18px; }
+    .about-copy > p { max-width: 620px; color: #42534a; font-size: 18px; line-height: 1.75; }
+    .focus-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 35px; }
+    .focus { min-height: 128px; padding: 18px; border: 1px solid #cbd8c4; border-radius: 15px; background: rgba(255,255,255,.35); }
+    .focus b { display: block; margin-bottom: 10px; color: #688d45; font: 13px Consolas, monospace; }
+    .focus strong { display: block; font-size: 14px; line-height: 1.4; }
+
+    .contact { background: var(--ink); color: white; }
+    .contact-inner { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; padding-block: 84px; }
+    .contact h2 { max-width: 650px; }
+    .contact p { max-width: 580px; margin: 20px 0 0; color: #aebcbd; }
+    .contact .eyebrow { margin-bottom: 17px; }
+    .contact-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .site-footer { background: #0b1117; color: #8c9c9f; border-top: 1px solid #28363b; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 76px; font-size: 13px; }
+    .footer-inner a { color: #c9d2d1; }
+    .footer-inner a:hover { color: var(--accent); }
+
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding-block: 75px 120px; }
+      .profile-card { max-width: 550px; margin: 0; transform: rotate(0); }
+      .hero-foot { bottom: 39px; }
+      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .about-grid { gap: 40px; }
+      .focus-list { grid-template-columns: 1fr; }
+      .focus { min-height: auto; }
+      .contact-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 660px) {
+      .container { width: min(100% - 34px, 1180px); }
+      .nav { min-height: 69px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 69px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 17px 20px; background: var(--ink); border-top: 1px solid rgba(255,255,255,.13); box-shadow: 0 18px 25px rgba(0,0,0,.18); }
+      .nav-links.is-open { display: flex; }
+      .nav-links a { padding: 12px; }
+      .nav-links .nav-cta { margin-top: 7px; text-align: center; }
+      .hero-inner { min-height: 0; gap: 53px; padding-block: 68px 100px; }
+      h1 { font-size: clamp(49px, 13vw, 70px); }
+      .hero-copy { font-size: 16px; }
+      .profile-card { padding: 19px; }
+      .avatar-wrap { margin-block: 26px 20px; }
+      .avatar { width: 65px; height: 65px; }
+      .avatar-wrap strong { font-size: 18px; }
+      .terminal-body { font-size: 12px; }
+      .section { padding-block: 75px; }
+      .section-heading { display: block; }
+      .section-intro { margin-top: 18px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project { min-height: 320px; }
+      .about-grid { grid-template-columns: 1fr; gap: 15px; }
+      .about-copy > p { font-size: 16px; }
+      .focus-list { grid-template-columns: 1fr; }
+      .contact-inner { padding-block: 75px; }
+      .footer-inner { flex-direction: column; justify-content: center; text-align: center; padding-block: 23px; gap: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navigation principale">
+      <a class="brand" href="#accueil" aria-label="Abderrahim OUAHAB, accueil"><span class="brand-mark">AO</span><span>Abderrahim OUAHAB</span></a>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="nav-links" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#projets">Projets</a>
+        <a href="#apropos">À propos</a>
+        <a href="https://github.com/Abderrahim-OUAHAB" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a class="nav-cta" href="#contact">Me contacter</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    <section class="hero" id="accueil" aria-labelledby="hero-title">
+      <div class="hero-inner container">
+        <div>
+          <span class="eyebrow">Portfolio · Développement & data</span>
+          <h1 id="hero-title">Bonjour, je suis <span>Abderrahim.</span></h1>
+          <p class="hero-copy">Je développe des applications web et j’explore l’intelligence artificielle ainsi que l’analyse de données. Découvrez ici une sélection de projets publiés sur mon GitHub.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projets">Découvrir mes projets <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="https://github.com/Abderrahim-OUAHAB" target="_blank" rel="noopener noreferrer">Voir mon GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-side" aria-hidden="true">
+          <div class="profile-card">
+            <div class="card-top"><span>Profil développeur</span><span class="online">GitHub</span></div>
+            <div class="avatar-wrap">
+              <img class="avatar" src="https://github.com/Abderrahim-OUAHAB.png?size=160" alt="" width="80" height="80">
+              <div><strong>Abderrahim OUAHAB</strong><small>@Abderrahim-OUAHAB</small></div>
+            </div>
+            <div class="terminal">
+              <div class="terminal-bar"><i></i><i></i><i></i></div>
+              <div class="terminal-body"><span class="prompt">$</span> explorer portfolio<br><span class="muted">→</span> applications web<br><span class="muted">→</span> intelligence artificielle<br><span class="muted">→</span> analyse de données<br><span class="prompt">$</span> <span class="cursor"></span></div>
+            </div>
+          </div>
+        </div>
+        <span class="hero-foot">Défiler pour explorer</span>
+      </div>
+    </section>
+
+    <section class="section" id="projets" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="kicker">01 / Réalisations</span><h2 id="projects-title">Projets sélectionnés<span aria-hidden="true">.</span></h2></div>
+          <p class="section-intro">Des applications et des expérimentations qui relient développement web, données et intelligence artificielle.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filtrer les projets">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous les projets</button>
+          <button class="filter" type="button" data-filter="web" aria-pressed="false">Applications web</button>
+          <button class="filter" type="button" data-filter="data" aria-pressed="false">IA & données</button>
+        </div>
+        <div class="projects-grid" id="projects-grid">
+          <article class="project" data-category="web data">
+            <div class="project-top"><span class="project-number">01 / Projet</span><span class="project-icon" aria-hidden="true">✳</span></div>
+            <h3>RespoBot</h3>
+            <p>Chatbot d’urgence médicale avec géolocalisation d’hôpitaux, protocoles de premiers secours et réponses multilingues.</p>
+            <div class="tags"><span class="tag">React</span><span class="tag">Flask</span><span class="tag">LangChain</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/chatbot-reponse-catastrophe" target="_blank" rel="noopener noreferrer" aria-label="Voir RespoBot sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="web">
+            <div class="project-top"><span class="project-number">02 / Projet</span><span class="project-icon" aria-hidden="true">▦</span></div>
+            <h3>StageManage</h3>
+            <p>Application Angular pour suivre les projets, les stages et les stagiaires avec authentification et tableaux de bord.</p>
+            <div class="tags"><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">Dashboard</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/STAGEMANAGE" target="_blank" rel="noopener noreferrer" aria-label="Voir StageManage sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="data">
+            <div class="project-top"><span class="project-number">03 / Projet</span><span class="project-icon" aria-hidden="true">◈</span></div>
+            <h3>Brain Tumor Detection</h3>
+            <p>Projet de détection de tumeurs cérébrales présenté dans un notebook Jupyter.</p>
+            <div class="tags"><span class="tag">IA</span><span class="tag">Jupyter Notebook</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/BTD" target="_blank" rel="noopener noreferrer" aria-label="Voir Brain Tumor Detection sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="data">
+            <div class="project-top"><span class="project-number">04 / Projet</span><span class="project-icon" aria-hidden="true">▤</span></div>
+            <h3>Customer Churn</h3>
+            <p>Analyse et prédiction de l’attrition client à partir de données télécom, avec notebook et visualisation Power BI.</p>
+            <div class="tags"><span class="tag">Data analysis</span><span class="tag">Jupyter</span><span class="tag">Power BI</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/Customer_Churn_Analysis_and_Prediction" target="_blank" rel="noopener noreferrer" aria-label="Voir Customer Churn sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="data">
+            <div class="project-top"><span class="project-number">05 / Projet</span><span class="project-icon" aria-hidden="true">⌁</span></div>
+            <h3>Earthquake</h3>
+            <p>Exploration de données sismiques de 1990 à 2023 et modélisation par régression linéaire.</p>
+            <div class="tags"><span class="tag">Données sismiques</span><span class="tag">Régression</span><span class="tag">Jupyter</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/EARTHQUAKE" target="_blank" rel="noopener noreferrer" aria-label="Voir Earthquake sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="web">
+            <div class="project-top"><span class="project-number">06 / Projet</span><span class="project-icon" aria-hidden="true">↗</span></div>
+            <h3>XJOBX</h3>
+            <p>Plateforme de recherche d’emploi avec suggestions personnalisées, développée en Java.</p>
+            <div class="tags"><span class="tag">Java</span><span class="tag">Application web</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/XJOBX" target="_blank" rel="noopener noreferrer" aria-label="Voir XJOBX sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+        <div class="all-projects"><a class="button" href="https://github.com/Abderrahim-OUAHAB?tab=repositories" target="_blank" rel="noopener noreferrer">Explorer tous mes dépôts <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="section about" id="apropos" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div><span class="kicker">02 / À propos</span><h2 id="about-title">Du code aux idées concrètes<span aria-hidden="true">.</span></h2></div>
+        <div class="about-copy">
+          <p>Mes dépôts GitHub montrent un intérêt pour la création d’applications utiles et l’exploration de problèmes par les données : assistance, gestion, analyse et prédiction.</p>
+          <p>J’aime relier une interface claire à une logique solide, puis expérimenter avec les outils d’IA et de data pour aller plus loin.</p>
+          <div class="focus-list" aria-label="Domaines explorés">
+            <div class="focus"><b>01</b><strong>Applications web</strong></div>
+            <div class="focus"><b>02</b><strong>Intelligence artificielle</strong></div>
+            <div class="focus"><b>03</b><strong>Analyse de données</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <div><span class="eyebrow">03 / Contact</span><h2 id="contact-title">Un projet à partager&nbsp;?</h2><p>Retrouvez mon travail sur GitHub ou contactez-moi via LinkedIn.</p></div>
+        <div class="contact-actions">
+          <a class="button button-primary" href="https://www.linkedin.com/in/abderrahim-ouahab" target="_blank" rel="noopener noreferrer">Me contacter sur LinkedIn <span aria-hidden="true">↗</span></a>
+          <a class="button button-outline" href="https://github.com/Abderrahim-OUAHAB" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><span>© <span id="year">2026</span> Abderrahim OUAHAB</span><span>Portfolio basé sur mes <a href="https://github.com/Abderrahim-OUAHAB" target="_blank" rel="noopener noreferrer">projets GitHub</a>.</span></div></footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Ouvrir le menu');
+    }));
+    document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('.filter').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      const filter = button.dataset.filter;
+      document.querySelectorAll('.project').forEach(project => {
+        project.hidden = filter !== 'all' && !project.dataset.category.split(' ').includes(filter);
+      });
+    }));
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
