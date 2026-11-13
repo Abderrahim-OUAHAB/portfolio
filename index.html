@@ -4,7 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111820">
-  <meta name="description" content="Portfolio d’Abderrahim OUAHAB : applications web, intelligence artificielle et analyse de données. Découvrez une sélection de projets GitHub.">
+  <meta name="description" content="Portfolio d’Abderrahim OUAHAB, élève-ingénieur en double diplôme EILCO / ENSA Oujda. Projets en IA, data science et data engineering, stages et compétences.">
+  <meta property="og:title" content="Abderrahim OUAHAB — IA, Data Science & Data Engineering">
+  <meta property="og:description" content="Projets, stages et parcours d’un élève-ingénieur en IA et data.">
+  <meta property="og:url" content="https://abderrahim-ouahab.github.io/portfolio/">
   <title>Abderrahim OUAHAB — Portfolio</title>
   <style>
     :root {
@@ -34,7 +37,7 @@
     .nav { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 800; letter-spacing: -.03em; white-space: nowrap; }
     .brand-mark { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 12px; background: var(--accent); color: var(--ink); font-size: 16px; font-weight: 900; }
-    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
     .nav-links a { font-size: 14px; font-weight: 650; color: #cbd3d4; transition: color .2s ease; }
     .nav-links a:hover { color: var(--accent); }
     .nav-links .nav-cta { color: var(--ink); background: var(--accent); padding: 11px 16px; border-radius: 10px; }
@@ -52,6 +55,8 @@
     h1 { max-width: 700px; margin: 26px 0 25px; font-size: clamp(54px, 6.1vw, 94px); line-height: .99; letter-spacing: -.075em; }
     h1 span { color: var(--accent); }
     .hero-copy { max-width: 590px; color: #b8c3c3; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.7; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
+    .hero-meta span { padding: 7px 11px; border: 1px solid #425157; border-radius: 999px; color: #c7d3d0; font-size: 12px; font-weight: 700; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 36px; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 49px; padding: 0 19px; border-radius: 11px; font-weight: 750; font-size: 14px; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
     .button:hover { transform: translateY(-2px); }
@@ -93,7 +98,7 @@
     .filter { padding: 9px 15px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #516169; font-size: 13px; font-weight: 750; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
     .filter:hover, .filter[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: white; }
     .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .project { display: flex; flex-direction: column; min-height: 360px; padding: 27px; background: white; border: 1px solid #e5e9e2; border-radius: var(--radius); box-shadow: 0 3px 14px rgba(17,24,32,.025); transition: transform .25s ease, box-shadow .25s ease; }
+    .project { display: flex; flex-direction: column; min-height: 385px; padding: 27px; background: white; border: 1px solid #e5e9e2; border-radius: var(--radius); box-shadow: 0 3px 14px rgba(17,24,32,.025); transition: transform .25s ease, box-shadow .25s ease; }
     .project:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
     .project[hidden] { display: none; }
     .project-top { display: flex; justify-content: space-between; align-items: start; gap: 15px; }
@@ -103,6 +108,7 @@
     .project:nth-child(3n+3) .project-icon { background: #f4e9e4; color: #8a5d48; }
     .project h3 { margin: 30px 0 9px; font-size: 23px; line-height: 1.15; letter-spacing: -.045em; }
     .project p { margin: 0; color: #65737a; font-size: 14px; }
+    .project-note { display: inline-block; margin-top: 13px; color: #536d39; font-size: 12px; font-weight: 800; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 26px; }
     .tag { padding: 5px 9px; border-radius: 6px; background: #f1f4ef; color: #596a60; font-size: 11px; font-weight: 750; }
     .project-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #e7eae5; color: #25352b; font-size: 13px; font-weight: 850; }
@@ -112,6 +118,13 @@
     .all-projects .button { background: var(--ink); color: white; }
     .all-projects .button:hover { background: #2e3e43; }
 
+    .experience-section { background: #fff; }
+    .experience-list { display: grid; gap: 14px; margin-top: 35px; }
+    .experience-item { display: grid; grid-template-columns: 165px 1fr; gap: 34px; padding: 27px 30px; border: 1px solid #e4e9e1; border-radius: 18px; background: #fbfcf8; }
+    .experience-date { padding-top: 3px; color: #6b8053; font: 13px/1.5 Consolas, monospace; font-weight: 700; }
+    .experience-item h3 { margin: 0 0 3px; font-size: 22px; letter-spacing: -.04em; }
+    .experience-place { margin: 0 0 11px; color: #69767a; font-size: 13px; font-weight: 750; }
+    .experience-item p:last-child { max-width: 790px; margin: 0; color: #45555b; font-size: 14px; line-height: 1.65; }
     .about { background: #eaf0e3; }
     .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
     .about h2 { max-width: 440px; }
@@ -121,6 +134,16 @@
     .focus { min-height: 128px; padding: 18px; border: 1px solid #cbd8c4; border-radius: 15px; background: rgba(255,255,255,.35); }
     .focus b { display: block; margin-bottom: 10px; color: #688d45; font: 13px Consolas, monospace; }
     .focus strong { display: block; font-size: 14px; line-height: 1.4; }
+    .education-list { display: grid; gap: 12px; margin-top: 22px; }
+    .education-item { padding: 18px 20px; border: 1px solid #cbd8c4; border-radius: 15px; background: rgba(255,255,255,.48); }
+    .education-item .education-date { display: block; margin-bottom: 5px; color: #597a3b; font: 12px Consolas, monospace; font-weight: 800; }
+    .education-item strong { display: block; font-size: 16px; }
+    .education-item small { display: block; margin-top: 3px; color: #51635a; font-size: 13px; }
+    .about-subtitle { margin: 25px 0 10px; font-size: 15px; letter-spacing: -.02em; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-list span { padding: 6px 9px; border: 1px solid #cbd8c4; border-radius: 8px; color: #3c5142; background: rgba(255,255,255,.46); font-size: 12px; font-weight: 750; }
+    .extra-info { display: grid; gap: 8px; margin-top: 27px; padding-top: 22px; border-top: 1px solid #cbd8c4; color: #45574c; font-size: 13px; }
+    .extra-info p { margin: 0; }
 
     .contact { background: var(--ink); color: white; }
     .contact-inner { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; padding-block: 84px; }
@@ -164,6 +187,8 @@
       .section-intro { margin-top: 18px; }
       .projects-grid { grid-template-columns: 1fr; }
       .project { min-height: 320px; }
+      .experience-item { grid-template-columns: 1fr; gap: 8px; padding: 21px; }
+      .experience-item h3 { font-size: 20px; }
       .about-grid { grid-template-columns: 1fr; gap: 15px; }
       .about-copy > p { font-size: 16px; }
       .focus-list { grid-template-columns: 1fr; }
@@ -186,8 +211,8 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="#projets">Projets</a>
-        <a href="#apropos">À propos</a>
-        <a href="https://github.com/Abderrahim-OUAHAB" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="#stages">Stages</a>
+        <a href="#parcours">Parcours</a>
         <a class="nav-cta" href="#contact">Me contacter</a>
       </div>
     </nav>
@@ -197,12 +222,13 @@
     <section class="hero" id="accueil" aria-labelledby="hero-title">
       <div class="hero-inner container">
         <div>
-          <span class="eyebrow">Portfolio · Développement & data</span>
+          <span class="eyebrow">Portfolio · IA & data</span>
           <h1 id="hero-title">Bonjour, je suis <span>Abderrahim.</span></h1>
-          <p class="hero-copy">Je développe des applications web et j’explore l’intelligence artificielle ainsi que l’analyse de données. Découvrez ici une sélection de projets publiés sur mon GitHub.</p>
+          <p class="hero-copy">Élève-ingénieur en double diplôme EILCO / ENSA Oujda, je construis des solutions en IA, data science et data engineering. Je recherche un stage de fin d’études de 6 mois en France.</p>
+          <div class="hero-meta" aria-label="Domaines et disponibilité"><span>IA générative & RAG</span><span>Machine learning</span><span>ETL & pipelines</span></div>
           <div class="hero-actions">
             <a class="button button-primary" href="#projets">Découvrir mes projets <span aria-hidden="true">↗</span></a>
-            <a class="button button-outline" href="https://github.com/Abderrahim-OUAHAB" target="_blank" rel="noopener noreferrer">Voir mon GitHub <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#stages">Voir mes stages <span aria-hidden="true">↗</span></a>
           </div>
         </div>
         <div class="hero-side" aria-hidden="true">
@@ -214,7 +240,7 @@
             </div>
             <div class="terminal">
               <div class="terminal-bar"><i></i><i></i><i></i></div>
-              <div class="terminal-body"><span class="prompt">$</span> explorer portfolio<br><span class="muted">→</span> applications web<br><span class="muted">→</span> intelligence artificielle<br><span class="muted">→</span> analyse de données<br><span class="prompt">$</span> <span class="cursor"></span></div>
+              <div class="terminal-body"><span class="prompt">$</span> explorer portfolio<br><span class="muted">→</span> agents IA & RAG<br><span class="muted">→</span> modèles prédictifs<br><span class="muted">→</span> pipelines de données<br><span class="prompt">$</span> <span class="cursor"></span></div>
             </div>
           </div>
         </div>
@@ -225,72 +251,128 @@
     <section class="section" id="projets" aria-labelledby="projects-title">
       <div class="container">
         <div class="section-heading">
-          <div><span class="kicker">01 / Réalisations</span><h2 id="projects-title">Projets sélectionnés<span aria-hidden="true">.</span></h2></div>
-          <p class="section-intro">Des applications et des expérimentations qui relient développement web, données et intelligence artificielle.</p>
+          <div><span class="kicker">01 / Réalisations</span><h2 id="projects-title">Projets au cœur de mes CV<span aria-hidden="true">.</span></h2></div>
+          <p class="section-intro">Une sélection orientée IA, data science et data engineering. Les premiers projets sont ceux que je présente dans mes CV.</p>
         </div>
         <div class="filters" role="group" aria-label="Filtrer les projets">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous les projets</button>
-          <button class="filter" type="button" data-filter="web" aria-pressed="false">Applications web</button>
-          <button class="filter" type="button" data-filter="data" aria-pressed="false">IA & données</button>
+          <button class="filter" type="button" data-filter="ai" aria-pressed="false">IA & RAG</button>
+          <button class="filter" type="button" data-filter="ds" aria-pressed="false">Data science</button>
+          <button class="filter" type="button" data-filter="de" aria-pressed="false">Data engineering</button>
+          <button class="filter" type="button" data-filter="web" aria-pressed="false">Développement web</button>
         </div>
         <div class="projects-grid" id="projects-grid">
-          <article class="project" data-category="web data">
-            <div class="project-top"><span class="project-number">01 / Projet</span><span class="project-icon" aria-hidden="true">✳</span></div>
+          <article class="project" data-category="ai ds de">
+            <div class="project-top"><span class="project-number">01 / IA · Data</span><span class="project-icon" aria-hidden="true">✳</span></div>
+            <h3>AI RiskOps Copilot</h3>
+            <p>Plateforme réunissant un agent LangGraph et RAG, un modèle de risque client XGBoost et un pipeline Airflow/dbt, avec API et tableau de bord.</p>
+            <div class="tags"><span class="tag">LangGraph</span><span class="tag">XGBoost</span><span class="tag">Airflow / dbt</span><span class="tag">FastAPI</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/RISKOPS-AI-COPILOT" target="_blank" rel="noopener noreferrer" aria-label="Voir AI RiskOps Copilot sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="ai de">
+            <div class="project-top"><span class="project-number">02 / Data engineering</span><span class="project-icon" aria-hidden="true">⇄</span></div>
+            <h3>OptiBank</h3>
+            <p>Contribution à un flux Cassandra → Kafka → PySpark pour analyser les transactions, ainsi qu'à un assistant bancaire utilisant la recherche vectorielle.</p>
+            <span class="project-note">Projet réalisé en équipe</span>
+            <div class="tags"><span class="tag">Kafka</span><span class="tag">PySpark</span><span class="tag">Cassandra</span><span class="tag">RAG</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/pfa-optibank" target="_blank" rel="noopener noreferrer" aria-label="Voir OptiBank sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="ds de">
+            <div class="project-top"><span class="project-number">03 / Data science</span><span class="project-icon" aria-hidden="true">⌁</span></div>
+            <h3>AIAFS</h3>
+            <p>Prévision des risques d'inondation à partir de données hydrologiques : variables temporelles, modèle Random Forest, API FastAPI et suivi MLflow.</p>
+            <span class="project-note">Projet accompagné par PÉPITE</span>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Random Forest</span><span class="tag">FastAPI</span><span class="tag">MLflow</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/aiafs_web" target="_blank" rel="noopener noreferrer" aria-label="Voir AIAFS sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="ai">
+            <div class="project-top"><span class="project-number">04 / IA & RAG</span><span class="project-icon" aria-hidden="true">◇</span></div>
+            <h3>Chatbot Analytics</h3>
+            <p>Assistant pour interroger des données GitHub avec recherche sémantique FAISS, LangChain et Gemini, exposé par une API FastAPI.</p>
+            <div class="tags"><span class="tag">Gemini</span><span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">FastAPI</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/chatbot-analytics" target="_blank" rel="noopener noreferrer" aria-label="Voir Chatbot Analytics sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="ds">
+            <div class="project-top"><span class="project-number">05 / Deep learning</span><span class="project-icon" aria-hidden="true">◈</span></div>
+            <h3>Brain Tumor Detection</h3>
+            <p>Classification d'images médicales par réseau convolutif, avec interface Flask pour restituer les prédictions.</p>
+            <div class="tags"><span class="tag">CNN</span><span class="tag">Flask</span><span class="tag">Imagerie médicale</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/BTD" target="_blank" rel="noopener noreferrer" aria-label="Voir Brain Tumor Detection sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="ai web">
+            <div class="project-top"><span class="project-number">06 / NLP · Web</span><span class="project-icon" aria-hidden="true">↗</span></div>
+            <h3>XJOBX</h3>
+            <p>Recommandation de CV et d'offres d'emploi par extraction de compétences et similarité de textes, intégrée à une application J2EE.</p>
+            <div class="tags"><span class="tag">spaCy</span><span class="tag">TF-IDF</span><span class="tag">Java / J2EE</span></div>
+            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/XJOBX" target="_blank" rel="noopener noreferrer" aria-label="Voir XJOBX sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project" data-category="ai web">
+            <div class="project-top"><span class="project-number">07 / IA · Web</span><span class="project-icon" aria-hidden="true">✺</span></div>
             <h3>RespoBot</h3>
-            <p>Chatbot d’urgence médicale avec géolocalisation d’hôpitaux, protocoles de premiers secours et réponses multilingues.</p>
+            <p>Chatbot d'urgence médicale avec géolocalisation d'hôpitaux, protocoles de premiers secours et réponses multilingues.</p>
             <div class="tags"><span class="tag">React</span><span class="tag">Flask</span><span class="tag">LangChain</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/chatbot-reponse-catastrophe" target="_blank" rel="noopener noreferrer" aria-label="Voir RespoBot sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
           <article class="project" data-category="web">
-            <div class="project-top"><span class="project-number">02 / Projet</span><span class="project-icon" aria-hidden="true">▦</span></div>
+            <div class="project-top"><span class="project-number">08 / Application web</span><span class="project-icon" aria-hidden="true">▦</span></div>
             <h3>StageManage</h3>
-            <p>Application Angular pour suivre les projets, les stages et les stagiaires avec authentification et tableaux de bord.</p>
+            <p>Application Angular de suivi des projets, des stages et des stagiaires, avec authentification et tableaux de bord.</p>
             <div class="tags"><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">Dashboard</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/STAGEMANAGE" target="_blank" rel="noopener noreferrer" aria-label="Voir StageManage sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="project" data-category="data">
-            <div class="project-top"><span class="project-number">03 / Projet</span><span class="project-icon" aria-hidden="true">◈</span></div>
-            <h3>Brain Tumor Detection</h3>
-            <p>Projet de détection de tumeurs cérébrales présenté dans un notebook Jupyter.</p>
-            <div class="tags"><span class="tag">IA</span><span class="tag">Jupyter Notebook</span></div>
-            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/BTD" target="_blank" rel="noopener noreferrer" aria-label="Voir Brain Tumor Detection sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="project" data-category="data">
-            <div class="project-top"><span class="project-number">04 / Projet</span><span class="project-icon" aria-hidden="true">▤</span></div>
-            <h3>Customer Churn</h3>
-            <p>Analyse et prédiction de l’attrition client à partir de données télécom, avec notebook et visualisation Power BI.</p>
-            <div class="tags"><span class="tag">Data analysis</span><span class="tag">Jupyter</span><span class="tag">Power BI</span></div>
-            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/Customer_Churn_Analysis_and_Prediction" target="_blank" rel="noopener noreferrer" aria-label="Voir Customer Churn sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="project" data-category="data">
-            <div class="project-top"><span class="project-number">05 / Projet</span><span class="project-icon" aria-hidden="true">⌁</span></div>
-            <h3>Earthquake</h3>
-            <p>Exploration de données sismiques de 1990 à 2023 et modélisation par régression linéaire.</p>
-            <div class="tags"><span class="tag">Données sismiques</span><span class="tag">Régression</span><span class="tag">Jupyter</span></div>
-            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/EARTHQUAKE" target="_blank" rel="noopener noreferrer" aria-label="Voir Earthquake sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="project" data-category="web">
-            <div class="project-top"><span class="project-number">06 / Projet</span><span class="project-icon" aria-hidden="true">↗</span></div>
-            <h3>XJOBX</h3>
-            <p>Plateforme de recherche d’emploi avec suggestions personnalisées, développée en Java.</p>
-            <div class="tags"><span class="tag">Java</span><span class="tag">Application web</span></div>
-            <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/XJOBX" target="_blank" rel="noopener noreferrer" aria-label="Voir XJOBX sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
         </div>
         <div class="all-projects"><a class="button" href="https://github.com/Abderrahim-OUAHAB?tab=repositories" target="_blank" rel="noopener noreferrer">Explorer tous mes dépôts <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
-    <section class="section about" id="apropos" aria-labelledby="about-title">
+    <section class="section experience-section" id="stages" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="kicker">02 / Expérience</span><h2 id="experience-title">Mes stages<span aria-hidden="true">.</span></h2></div>
+          <p class="section-intro">Trois expériences où j'ai associé développement, données et intelligence artificielle à des besoins métier.</p>
+        </div>
+        <div class="experience-list">
+          <article class="experience-item">
+            <span class="experience-date">Juin – août 2026</span>
+            <div><h3>Stagiaire ingénieur · Digitalisation & IA</h3><p class="experience-place">NORPAPER · Blendecques, France</p><p>Pilotage et développement d'une application de formation à la sécurité en Laravel/MySQL. Prototype d'assistant documentaire RAG local avec Ollama et Qdrant, automatisations n8n, Docker et GitHub Actions.</p></div>
+          </article>
+          <article class="experience-item">
+            <span class="experience-date">Juil. – août 2025</span>
+            <div><h3>Stagiaire Data Engineer</h3><p class="experience-place">PUBMA · Oujda, Maroc</p><p>Flux ETL Talend/PostgreSQL pour intégrer et transformer des données métier. Analyse de l'activité GitHub, tableaux de bord Power BI et chatbot FastAPI/React pour interroger les données.</p></div>
+          </article>
+          <article class="experience-item">
+            <span class="experience-date">Juil. – août 2024</span>
+            <div><h3>Stagiaire Data Analyst</h3><p class="experience-place">Province de Berkane · Maroc</p><p>Structuration et analyse de plus de 500 dossiers, reporting Power BI et développement d'interfaces de suivi avec Angular et Node.js.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="parcours" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div><span class="kicker">02 / À propos</span><h2 id="about-title">Du code aux idées concrètes<span aria-hidden="true">.</span></h2></div>
+        <div>
+          <span class="kicker">03 / Parcours</span>
+          <h2 id="about-title">Formation & compétences<span aria-hidden="true">.</span></h2>
+          <div class="education-list" aria-label="Formation">
+            <div class="education-item"><span class="education-date">2025 – 2027</span><strong>EILCO · Calais, France</strong><small>Double diplôme d'ingénieur en informatique</small></div>
+            <div class="education-item"><span class="education-date">2021 – 2025</span><strong>ENSA Oujda · Maroc</strong><small>Ingénierie Data Science et Cloud Computing · Mention Bien</small></div>
+          </div>
+        </div>
         <div class="about-copy">
-          <p>Mes dépôts GitHub montrent un intérêt pour la création d’applications utiles et l’exploration de problèmes par les données : assistance, gestion, analyse et prédiction.</p>
-          <p>J’aime relier une interface claire à une logique solide, puis expérimenter avec les outils d’IA et de data pour aller plus loin.</p>
-          <div class="focus-list" aria-label="Domaines explorés">
-            <div class="focus"><b>01</b><strong>Applications web</strong></div>
-            <div class="focus"><b>02</b><strong>Intelligence artificielle</strong></div>
-            <div class="focus"><b>03</b><strong>Analyse de données</strong></div>
+          <p>Mon parcours relie la conception d'applications à la valorisation des données. Mes projets couvrent les agents IA et la recherche documentaire, le machine learning et les pipelines de données.</p>
+          <div class="focus-list" aria-label="Domaines de travail">
+            <div class="focus"><b>01</b><strong>IA générative & RAG</strong></div>
+            <div class="focus"><b>02</b><strong>Data science & vision</strong></div>
+            <div class="focus"><b>03</b><strong>Data engineering</strong></div>
+          </div>
+          <h3 class="about-subtitle">Outils utilisés</h3>
+          <div class="skill-list" aria-label="Compétences techniques">
+            <span>Python</span><span>SQL</span><span>LangChain</span><span>LangGraph</span><span>FastAPI</span><span>scikit-learn</span><span>XGBoost</span><span>Talend</span><span>Kafka</span><span>PySpark</span><span>Airflow</span><span>dbt</span><span>PostgreSQL</span><span>Power BI</span><span>Docker</span>
+          </div>
+          <div class="extra-info">
+            <p><strong>Certifications :</strong> OCI 2024 Certified Data Science Professional · AWS Academy Graduate</p>
+            <p><strong>Distinction :</strong> 2e sur 15 équipes au DATATHONX avec Deep Medical Diagnosis, un projet de classification d'images radiographiques.</p>
+            <p><strong>Langues :</strong> arabe (langue maternelle), français (courant), anglais (intermédiaire).</p>
           </div>
         </div>
       </div>
@@ -298,10 +380,10 @@
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="container contact-inner">
-        <div><span class="eyebrow">03 / Contact</span><h2 id="contact-title">Un projet à partager&nbsp;?</h2><p>Retrouvez mon travail sur GitHub ou contactez-moi via LinkedIn.</p></div>
+        <div><span class="eyebrow">04 / Contact</span><h2 id="contact-title">Échangeons sur votre projet.</h2><p>Je recherche un stage de fin d'études de 6 mois et suis mobile en France. Contactez-moi par e-mail ou via LinkedIn.</p></div>
         <div class="contact-actions">
-          <a class="button button-primary" href="https://www.linkedin.com/in/abderrahim-ouahab" target="_blank" rel="noopener noreferrer">Me contacter sur LinkedIn <span aria-hidden="true">↗</span></a>
-          <a class="button button-outline" href="https://github.com/Abderrahim-OUAHAB" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="mailto:abderrahim.ouahab@outlook.fr">M'écrire par e-mail <span aria-hidden="true">↗</span></a>
+          <a class="button button-outline" href="https://www.linkedin.com/in/abderrahim-ouahab" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
