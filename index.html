@@ -97,8 +97,8 @@
     .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
     .filter { padding: 9px 15px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #516169; font-size: 13px; font-weight: 750; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
     .filter:hover, .filter[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: white; }
-    .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .project { display: flex; flex-direction: column; min-height: 385px; padding: 27px; background: white; border: 1px solid #e5e9e2; border-radius: var(--radius); box-shadow: 0 3px 14px rgba(17,24,32,.025); transition: transform .25s ease, box-shadow .25s ease; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .project { display: flex; flex-direction: column; min-height: 0; padding: 30px; background: white; border: 1px solid #e5e9e2; border-radius: var(--radius); box-shadow: 0 3px 14px rgba(17,24,32,.025); transition: transform .25s ease, box-shadow .25s ease; }
     .project:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
     .project[hidden] { display: none; }
     .project-top { display: flex; justify-content: space-between; align-items: start; gap: 15px; }
@@ -106,8 +106,11 @@
     .project-icon { display: grid; place-items: center; width: 49px; height: 49px; border-radius: 14px; background: #e9f6d7; color: #315737; font-size: 24px; }
     .project:nth-child(3n+2) .project-icon { background: #e0edf5; color: #326285; }
     .project:nth-child(3n+3) .project-icon { background: #f4e9e4; color: #8a5d48; }
-    .project h3 { margin: 30px 0 9px; font-size: 23px; line-height: 1.15; letter-spacing: -.045em; }
-    .project p { margin: 0; color: #65737a; font-size: 14px; }
+    .project h3 { margin: 27px 0 9px; font-size: 25px; line-height: 1.15; letter-spacing: -.045em; }
+    .project p { margin: 0; color: #65737a; font-size: 14px; line-height: 1.7; }
+    .project-lead { font-size: 15px !important; color: #3e5056 !important; }
+    .project-explanation { display: grid; gap: 15px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #e7eae5; }
+    .project-explanation strong { display: block; margin-bottom: 4px; color: #577341; font-size: 11px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
     .project-note { display: inline-block; margin-top: 13px; color: #536d39; font-size: 12px; font-weight: 800; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 26px; }
     .tag { padding: 5px 9px; border-radius: 6px; background: #f1f4ef; color: #596a60; font-size: 11px; font-weight: 750; }
@@ -124,7 +127,9 @@
     .experience-date { padding-top: 3px; color: #6b8053; font: 13px/1.5 Consolas, monospace; font-weight: 700; }
     .experience-item h3 { margin: 0 0 3px; font-size: 22px; letter-spacing: -.04em; }
     .experience-place { margin: 0 0 11px; color: #69767a; font-size: 13px; font-weight: 750; }
-    .experience-item p:last-child { max-width: 790px; margin: 0; color: #45555b; font-size: 14px; line-height: 1.65; }
+    .experience-purpose { max-width: 790px; margin: 0 0 11px; color: #45555b; font-size: 14px; line-height: 1.65; }
+    .experience-points { display: grid; gap: 7px; max-width: 790px; margin: 0; padding-left: 19px; color: #45555b; font-size: 14px; line-height: 1.6; }
+    .experience-points li::marker { color: #80a74b; }
     .about { background: #eaf0e3; }
     .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
     .about h2 { max-width: 440px; }
@@ -186,7 +191,7 @@
       .section-heading { display: block; }
       .section-intro { margin-top: 18px; }
       .projects-grid { grid-template-columns: 1fr; }
-      .project { min-height: 320px; }
+      .project { padding: 24px; }
       .experience-item { grid-template-columns: 1fr; gap: 8px; padding: 21px; }
       .experience-item h3 { font-size: 20px; }
       .about-grid { grid-template-columns: 1fr; gap: 15px; }
@@ -256,7 +261,7 @@
         </div>
         <div class="filters" role="group" aria-label="Filtrer les projets">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous les projets</button>
-          <button class="filter" type="button" data-filter="ai" aria-pressed="false">IA & RAG</button>
+          <button class="filter" type="button" data-filter="ai" aria-pressed="false">Intelligence artificielle</button>
           <button class="filter" type="button" data-filter="ds" aria-pressed="false">Data science</button>
           <button class="filter" type="button" data-filter="de" aria-pressed="false">Data engineering</button>
           <button class="filter" type="button" data-filter="web" aria-pressed="false">Développement web</button>
@@ -265,14 +270,22 @@
           <article class="project" data-category="ai ds de">
             <div class="project-top"><span class="project-number">01 / IA · Data</span><span class="project-icon" aria-hidden="true">✳</span></div>
             <h3>AI RiskOps Copilot</h3>
-            <p>Plateforme réunissant un agent LangGraph et RAG, un modèle de risque client XGBoost et un pipeline Airflow/dbt, avec API et tableau de bord.</p>
+            <p class="project-lead">Une aide à la décision pour comprendre quels clients présentent un risque et quelles actions prioriser.</p>
+            <div class="project-explanation">
+              <div><strong>Le besoin</strong><p>Les signaux de risque se trouvent dans des contrats, fichiers CSV, tickets et données clients. Le projet les rassemble pour expliquer un score plutôt que montrer une prédiction isolée.</p></div>
+              <div><strong>La solution</strong><p>Les documents sont traités puis recherchés avec PostgreSQL/pgvector et RAG. Un agent LangGraph oriente les questions, XGBoost estime le churn, et Airflow/dbt préparent les données. FastAPI et Streamlit donnent accès aux résultats.</p></div>
+            </div>
             <div class="tags"><span class="tag">LangGraph</span><span class="tag">XGBoost</span><span class="tag">Airflow / dbt</span><span class="tag">FastAPI</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/RISKOPS-AI-COPILOT" target="_blank" rel="noopener noreferrer" aria-label="Voir AI RiskOps Copilot sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
           <article class="project" data-category="ai de">
             <div class="project-top"><span class="project-number">02 / Data engineering</span><span class="project-icon" aria-hidden="true">⇄</span></div>
             <h3>OptiBank</h3>
-            <p>Contribution à un flux Cassandra → Kafka → PySpark pour analyser les transactions, ainsi qu'à un assistant bancaire utilisant la recherche vectorielle.</p>
+            <p class="project-lead">Un prototype bancaire collectif reliant application métier, analyse des transactions et assistant conversationnel.</p>
+            <div class="project-explanation">
+              <div><strong>Le besoin</strong><p>Suivre les comptes et transactions tout en détectant des opérations potentiellement frauduleuses dans un flux de données.</p></div>
+              <div><strong>Ma contribution</strong><p>J'ai contribué au pipeline Cassandra → Kafka → PySpark pour l'analyse en flux et à l'assistant Flask qui interroge les données bancaires et la recherche vectorielle. L'application comprend aussi une interface Angular et une API Spring Boot.</p></div>
+            </div>
             <span class="project-note">Projet réalisé en équipe</span>
             <div class="tags"><span class="tag">Kafka</span><span class="tag">PySpark</span><span class="tag">Cassandra</span><span class="tag">RAG</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/pfa-optibank" target="_blank" rel="noopener noreferrer" aria-label="Voir OptiBank sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
@@ -280,7 +293,11 @@
           <article class="project" data-category="ds de">
             <div class="project-top"><span class="project-number">03 / Data science</span><span class="project-icon" aria-hidden="true">⌁</span></div>
             <h3>AIAFS</h3>
-            <p>Prévision des risques d'inondation à partir de données hydrologiques : variables temporelles, modèle Random Forest, API FastAPI et suivi MLflow.</p>
+            <p class="project-lead">Une application de prévision des crues qui transforme des mesures hydrologiques en indicateurs de vigilance lisibles.</p>
+            <div class="project-explanation">
+              <div><strong>Le besoin</strong><p>Anticiper la montée des eaux et montrer les prochaines heures de prévision, les tendances et les seuils d'alerte.</p></div>
+              <div><strong>La solution</strong><p>Les observations sont préparées en variables historiques et temporelles pour un modèle Random Forest. FastAPI expose les prévisions ; le tableau de bord React affiche courbes, détails horaires et indicateurs de risque. Le suivi des expériences utilise MLflow.</p></div>
+            </div>
             <span class="project-note">Projet accompagné par PÉPITE</span>
             <div class="tags"><span class="tag">Python</span><span class="tag">Random Forest</span><span class="tag">FastAPI</span><span class="tag">MLflow</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/aiafs_web" target="_blank" rel="noopener noreferrer" aria-label="Voir AIAFS sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
@@ -288,35 +305,55 @@
           <article class="project" data-category="ai">
             <div class="project-top"><span class="project-number">04 / IA & RAG</span><span class="project-icon" aria-hidden="true">◇</span></div>
             <h3>Chatbot Analytics</h3>
-            <p>Assistant pour interroger des données GitHub avec recherche sémantique FAISS, LangChain et Gemini, exposé par une API FastAPI.</p>
+            <p class="project-lead">Un assistant qui permet de poser des questions en langage naturel sur des données d'activité GitHub.</p>
+            <div class="project-explanation">
+              <div><strong>Le besoin</strong><p>Retrouver rapidement une information utile dans des données techniques sans parcourir manuellement chaque entrée.</p></div>
+              <div><strong>La solution</strong><p>Les données sont indexées dans FAISS pour une recherche sémantique. LangChain combine les résultats avec Gemini pour produire une réponse contextualisée, et FastAPI expose le chatbot à l'application.</p></div>
+            </div>
             <div class="tags"><span class="tag">Gemini</span><span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">FastAPI</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/chatbot-analytics" target="_blank" rel="noopener noreferrer" aria-label="Voir Chatbot Analytics sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
           <article class="project" data-category="ds">
             <div class="project-top"><span class="project-number">05 / Deep learning</span><span class="project-icon" aria-hidden="true">◈</span></div>
             <h3>Brain Tumor Detection</h3>
-            <p>Classification d'images médicales par réseau convolutif, avec interface Flask pour restituer les prédictions.</p>
+            <p class="project-lead">Un prototype de classification d'images médicales utilisant un réseau de neurones convolutif.</p>
+            <div class="project-explanation">
+              <div><strong>Le parcours utilisateur</strong><p>L'utilisateur charge une image dans l'interface Flask, puis lance l'analyse. La page affiche l'image et la prédiction obtenue.</p></div>
+              <div><strong>Le modèle</strong><p>Un CNN entraîné sur des scans médicaux effectue une classification binaire : présence ou absence de tumeur dans l'image.</p></div>
+            </div>
             <div class="tags"><span class="tag">CNN</span><span class="tag">Flask</span><span class="tag">Imagerie médicale</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/BTD" target="_blank" rel="noopener noreferrer" aria-label="Voir Brain Tumor Detection sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
           <article class="project" data-category="ai web">
             <div class="project-top"><span class="project-number">06 / NLP · Web</span><span class="project-icon" aria-hidden="true">↗</span></div>
             <h3>XJOBX</h3>
-            <p>Recommandation de CV et d'offres d'emploi par extraction de compétences et similarité de textes, intégrée à une application J2EE.</p>
+            <p class="project-lead">Une plateforme qui rapproche les offres d'emploi des profils candidats grâce à l'analyse de texte.</p>
+            <div class="project-explanation">
+              <div><strong>Le besoin</strong><p>Aider les candidats à trouver des offres pertinentes et les recruteurs à consulter des profils adaptés.</p></div>
+              <div><strong>La solution</strong><p>spaCy extrait les compétences des CV et des annonces ; TF-IDF et la similarité cosinus classent les correspondances. L'application J2EE/MySQL gère profils, offres et candidatures.</p></div>
+            </div>
             <div class="tags"><span class="tag">spaCy</span><span class="tag">TF-IDF</span><span class="tag">Java / J2EE</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/XJOBX" target="_blank" rel="noopener noreferrer" aria-label="Voir XJOBX sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
           <article class="project" data-category="ai web">
             <div class="project-top"><span class="project-number">07 / IA · Web</span><span class="project-icon" aria-hidden="true">✺</span></div>
             <h3>RespoBot</h3>
-            <p>Chatbot d'urgence médicale avec géolocalisation d'hôpitaux, protocoles de premiers secours et réponses multilingues.</p>
+            <p class="project-lead">Un assistant d'information pour retrouver rapidement des protocoles de premiers secours et des hôpitaux à proximité.</p>
+            <div class="project-explanation">
+              <div><strong>Le besoin</strong><p>Rassembler des informations utiles dans une interface simple, accessible dans plusieurs langues.</p></div>
+              <div><strong>La solution</strong><p>Le frontend React présente la conversation et la géolocalisation. Le backend Flask s'appuie sur LangChain pour produire les réponses et organiser l'accès aux protocoles.</p></div>
+            </div>
             <div class="tags"><span class="tag">React</span><span class="tag">Flask</span><span class="tag">LangChain</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/chatbot-reponse-catastrophe" target="_blank" rel="noopener noreferrer" aria-label="Voir RespoBot sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
           <article class="project" data-category="web">
             <div class="project-top"><span class="project-number">08 / Application web</span><span class="project-icon" aria-hidden="true">▦</span></div>
             <h3>StageManage</h3>
-            <p>Application Angular de suivi des projets, des stages et des stagiaires, avec authentification et tableaux de bord.</p>
+            <p class="project-lead">Une application web pour organiser le suivi des projets, des stages et des stagiaires.</p>
+            <div class="project-explanation">
+              <div><strong>Le besoin</strong><p>Centraliser les informations de gestion et faciliter leur consultation par les utilisateurs concernés.</p></div>
+              <div><strong>La solution</strong><p>L'application Angular comprend l'authentification, des tableaux de bord, la gestion des projets et stagiaires ainsi que le suivi des stages et des fichiers téléversés.</p></div>
+            </div>
             <div class="tags"><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">Dashboard</span></div>
             <a class="project-link" href="https://github.com/Abderrahim-OUAHAB/STAGEMANAGE" target="_blank" rel="noopener noreferrer" aria-label="Voir StageManage sur GitHub"><span>Voir le dépôt GitHub</span><span aria-hidden="true">↗</span></a>
           </article>
@@ -334,15 +371,42 @@
         <div class="experience-list">
           <article class="experience-item">
             <span class="experience-date">Juin – août 2026</span>
-            <div><h3>Stagiaire ingénieur · Digitalisation & IA</h3><p class="experience-place">NORPAPER · Blendecques, France</p><p>Pilotage et développement d'une application de formation à la sécurité en Laravel/MySQL. Prototype d'assistant documentaire RAG local avec Ollama et Qdrant, automatisations n8n, Docker et GitHub Actions.</p></div>
+            <div>
+              <h3>Stagiaire ingénieur · Digitalisation & IA</h3>
+              <p class="experience-place">NORPAPER · Blendecques, France</p>
+              <p class="experience-purpose">Deux volets : numériser la formation à la sécurité et explorer un accès plus rapide à la documentation interne.</p>
+              <ul class="experience-points">
+                <li>Pilotage et développement d'une application Laravel/MySQL avec parcours de sécurité multilingues, quiz, rôles et gestion des accès.</li>
+                <li>Prototype d'assistant documentaire RAG local : Ollama pour le modèle et Qdrant pour la recherche vectorielle.</li>
+                <li>Automatisations avec n8n et préparation de l'environnement avec Docker et GitHub Actions.</li>
+              </ul>
+            </div>
           </article>
           <article class="experience-item">
             <span class="experience-date">Juil. – août 2025</span>
-            <div><h3>Stagiaire Data Engineer</h3><p class="experience-place">PUBMA · Oujda, Maroc</p><p>Flux ETL Talend/PostgreSQL pour intégrer et transformer des données métier. Analyse de l'activité GitHub, tableaux de bord Power BI et chatbot FastAPI/React pour interroger les données.</p></div>
+            <div>
+              <h3>Stagiaire Data Engineer</h3>
+              <p class="experience-place">PUBMA · Oujda, Maroc</p>
+              <p class="experience-purpose">Rendre des données métier et l'activité GitHub exploitables pour l'analyse et la consultation.</p>
+              <ul class="experience-points">
+                <li>Création de flux ETL Talend/PostgreSQL pour intégrer, nettoyer et transformer les données.</li>
+                <li>Analyse des commits, issues et pull requests GitHub, puis restitution des indicateurs dans Power BI.</li>
+                <li>Développement d'un chatbot FastAPI/React permettant d'interroger les informations issues des données.</li>
+              </ul>
+            </div>
           </article>
           <article class="experience-item">
             <span class="experience-date">Juil. – août 2024</span>
-            <div><h3>Stagiaire Data Analyst</h3><p class="experience-place">Province de Berkane · Maroc</p><p>Structuration et analyse de plus de 500 dossiers, reporting Power BI et développement d'interfaces de suivi avec Angular et Node.js.</p></div>
+            <div>
+              <h3>Stagiaire Data Analyst</h3>
+              <p class="experience-place">Province de Berkane · Maroc</p>
+              <p class="experience-purpose">Structurer les informations de suivi des stagiaires et des projets pour faciliter le reporting.</p>
+              <ul class="experience-points">
+                <li>Nettoyage et analyse de plus de 500 dossiers de stagiaires et de projets.</li>
+                <li>Création de visualisations et d'indicateurs dans Power BI.</li>
+                <li>Développement d'interfaces de suivi avec Angular et Node.js.</li>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
